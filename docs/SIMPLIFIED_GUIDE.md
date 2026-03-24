@@ -11,6 +11,10 @@ This codebase is based on and explicitly credits:
 
 This version extends the ISA and example set, but the core idea comes from that original work.
 
+If you want diagrams instead of prose, see:
+
+- [ARCHITECTURE.md](ARCHITECTURE.md)
+
 ## 30-Second Mental Model
 
 This project is a small virtual machine presented in transformer-shaped form.

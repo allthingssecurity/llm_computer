@@ -26,6 +26,7 @@ This version extends the ISA with carry branches, pointer-based memory access, s
 Read the simplified guide first:
 
 - [docs/SIMPLIFIED_GUIDE.md](docs/SIMPLIFIED_GUIDE.md)
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 That document explains, in plain language:
 
@@ -35,6 +36,13 @@ That document explains, in plain language:
 - what the baked weights encode
 - how one inference step works
 - how more complex programs like sorting are built
+
+The architecture doc adds GitHub-renderable diagrams for:
+
+- compile-time design
+- runtime execution
+- differential verification
+- the STARK proof overlay
 
 ---
 
