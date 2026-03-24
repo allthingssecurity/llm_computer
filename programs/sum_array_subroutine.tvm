@@ -1,0 +1,52 @@
+; Sum an array through a stack-framed subroutine.
+; Main pushes [start_ptr, end_ptr) and the callee uses:
+;   local[0] = current pointer
+;   local[1] = running sum
+; Frame layout after `ADJSP -2` inside `sum_range`:
+;   SP+0 current
+;   SP+1 sum
+;   SP+2 return address
+;   SP+3 end pointer
+;   SP+4 start pointer
+.memory 32
+.init 20 3
+.init 21 1
+.init 22 4
+.init 23 1
+.init 24 5
+
+LOADI 20
+PUSH
+LOADI 25
+PUSH
+CALL sum_range
+ADJSP 2
+HALT
+
+sum_range:
+  ADJSP -2
+  LOADI 0
+  STORER 1
+  LOADR 4
+  STORER 0
+
+loop:
+  LOADR 0
+  CMPR 3
+  JZ done
+
+  LOADR 0
+  STORE 0
+  LOADR 1
+  ADDP 0
+  STORER 1
+
+  LOADR 0
+  ADD 1
+  STORER 0
+  JMP loop
+
+done:
+  LOADR 1
+  ADJSP 2
+  RET

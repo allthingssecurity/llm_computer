@@ -1,0 +1,24 @@
+; Compute gcd(48, 18) = 6 using repeated subtraction.
+; MEM[0] = a
+; MEM[1] = b
+.memory 2
+.init 0 48
+.init 1 18
+
+loop:
+  LOAD 0
+  CMPM 1
+  JZ done
+  JC b_greater
+  STORE 0
+  JMP loop
+
+b_greater:
+  LOAD 1
+  SUBM 0
+  STORE 1
+  JMP loop
+
+done:
+  LOAD 0
+  HALT

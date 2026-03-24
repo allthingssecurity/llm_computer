@@ -1,0 +1,13 @@
+.memory 2
+.init 0 7
+.init 1 11
+
+LOAD 0
+CMPM 1
+JC take_rhs
+LOAD 0
+HALT
+
+take_rhs:
+LOAD 1
+HALT

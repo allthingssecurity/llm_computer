@@ -1,0 +1,6 @@
+.memory 4
+.init 1 99
+
+LOADI 42
+SWAP 1
+HALT

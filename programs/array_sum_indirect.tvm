@@ -1,0 +1,30 @@
+; Sum the array [3, 1, 4, 1, 5] = 14 using indirect addressing.
+; MEM[0] = sum
+; MEM[1] = pointer to current element
+; MEM[2] = exclusive end pointer
+; MEM[3..7] = array data
+.memory 8
+.init 0 0
+.init 1 3
+.init 2 8
+.init 3 3
+.init 4 1
+.init 5 4
+.init 6 1
+.init 7 5
+
+loop:
+  LOAD 1
+  CMPM 2
+  JZ done
+  LOADP 1
+  ADDM 0
+  STORE 0
+  LOAD 1
+  ADD 1
+  STORE 1
+  JMP loop
+
+done:
+  LOAD 0
+  HALT

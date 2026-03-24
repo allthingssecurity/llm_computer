@@ -1,0 +1,61 @@
+; Bubble-sort four values in ascending order.
+; Variables:
+; MEM[0]  = p pointer cell
+; MEM[1]  = q pointer cell
+; MEM[2]  = q_limit
+; MEM[3]  = remaining passes
+; MEM[4]  = scratch
+; Data:
+; MEM[10..13] = [7, 2, 9, 1]
+.memory 14
+.init 3 3
+.init 10 7
+.init 11 2
+.init 12 9
+.init 13 1
+
+outer:
+  LOAD 3
+  JZ done
+
+  LOADI 10
+  STORE 0
+  LOADI 11
+  STORE 1
+  LOADI 11
+  ADDM 3
+  STORE 2
+
+inner:
+  LOAD 1
+  CMPM 2
+  JZ next_pass
+
+  LOADP 0
+  STORE 4
+  CMPP 1
+  JC in_order
+  JZ in_order
+
+  LOADP 1
+  STOREP 0
+  LOAD 4
+  STOREP 1
+
+in_order:
+  LOAD 0
+  ADD 1
+  STORE 0
+  LOAD 1
+  ADD 1
+  STORE 1
+  JMP inner
+
+next_pass:
+  LOAD 3
+  SUB 1
+  STORE 3
+  JMP outer
+
+done:
+  HALT
